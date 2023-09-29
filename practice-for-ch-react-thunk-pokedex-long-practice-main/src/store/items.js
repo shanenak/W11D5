@@ -45,9 +45,25 @@ export const updateItem = (item) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const payload = response.json();
+    const payload = await response.json();
     dispatch(update(payload));
     return payload;
+  }
+}
+
+export const deleteItem = (itemId, pokemonId) => async (dispatch) => {
+  const response = await fetch(`/api/items/${itemId}`, {
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': "application/json",
+      'Accept': "application/json",
+    }
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data)
+    dispatch(remove(data.id, pokemonId))
   }
 }
 
