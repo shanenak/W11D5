@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateItem } from '../store/items';
 
 const ItemForm = ({ itemId, hideForm }) => {
+  let editForm = true;
   let item = useSelector(state => state.items[itemId]);
+  if (!item) {
+    item = {happiness: "", price: "", name: ""};
+    editForm = false;
+  }
 
   const [happiness, setHappiness] = useState(item.happiness);
   const [price, setPrice] = useState(item.price);

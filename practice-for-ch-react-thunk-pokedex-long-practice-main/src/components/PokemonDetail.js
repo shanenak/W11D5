@@ -11,6 +11,7 @@ const PokemonDetail = () => {
   const pokemon = useSelector(state => state.pokemon[pokemonId]);
   const [showEditPokeForm, setShowEditPokeForm] = useState(false);
   const [editItemId, setEditItemId] = useState(null);
+  const [addItem, setAddItem] = useState(null);
 
   const dispatch = useDispatch()
 
@@ -31,6 +32,13 @@ const PokemonDetail = () => {
       <ItemForm 
         itemId={editItemId} 
         hideForm={() => setEditItemId(null)} 
+      />
+    );
+  } else if (addItem) {
+    content = (
+      <ItemForm 
+        itemId={null} 
+        hideForm={() => setAddItem(null)} 
       />
     );
   } else if (showEditPokeForm && pokemon.captured) {
@@ -71,7 +79,7 @@ const PokemonDetail = () => {
         <div>
           <h2>
             Items 
-            <button> + </button>
+            <button onClick={() => setAddItem(true)}> + </button>
           </h2>
           <table>
             <thead>

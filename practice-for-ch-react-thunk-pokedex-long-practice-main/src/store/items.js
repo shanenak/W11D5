@@ -67,6 +67,12 @@ export const deleteItem = (itemId, pokemonId) => async (dispatch) => {
   }
 }
 
+export const createItem = (item) => async (dispatch) => {
+  const response = await fetch(`/api/items`, {
+    
+  });
+}
+
 const initialState = {};
 
 const itemsReducer = (state = initialState, action) => {
